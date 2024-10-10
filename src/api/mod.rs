@@ -20,13 +20,6 @@ pub mod subject;
 
 #[async_trait::async_trait]
 pub trait SchemaRegistryAPI:
-SchemaAPI
-    + SubjectAPI
-    + CompatibilityAPI
-    + ConfigurationAPI
-    + ModeAPI
-    + ExporterAPI
-    + Send
-    + Sync
+    SchemaAPI + SubjectAPI + CompatibilityAPI + ConfigurationAPI + ModeAPI + ExporterAPI + Send + Sync
 {
 }

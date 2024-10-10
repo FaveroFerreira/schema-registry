@@ -1,7 +1,7 @@
-use crate::{Schema, SchemaRegistryError, SchemaType, StringSchema};
-use async_trait::async_trait;
+use crate::error::SchemaRegistryError;
+use crate::types::{Schema, SchemaType, StringSchema};
 
-#[async_trait]
+#[async_trait::async_trait]
 pub trait SchemaAPI {
     /// Get the schema identified by the provided id
     async fn get_schema_by_id(&self, id: u32) -> Result<Schema, SchemaRegistryError>;

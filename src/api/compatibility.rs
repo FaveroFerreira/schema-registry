@@ -1,5 +1,6 @@
 use crate::error::SchemaRegistryError;
-use crate::{UnregisteredSchema, Version};
+
+use crate::types::{UnregisteredSchema, Version};
 
 #[async_trait::async_trait]
 pub trait CompatibilityAPI: Send + Sync {
@@ -12,7 +13,7 @@ pub trait CompatibilityAPI: Send + Sync {
     ) -> Result<bool, SchemaRegistryError>;
 
     /// Checks if a schema is compatible with all versions of the provided subject
-    async fn is_full_compatible(
+    async fn is_fully_compatible(
         &self,
         subject: &str,
         schema: &UnregisteredSchema,

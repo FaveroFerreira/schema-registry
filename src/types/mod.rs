@@ -5,7 +5,7 @@ use std::str::FromStr;
 
 use serde::{Deserialize, Serialize};
 
-use crate::SchemaRegistryError;
+use crate::error::SchemaRegistryError;
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct ExporterStatus {
@@ -180,6 +180,7 @@ pub struct LookupSubject {
 }
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(transparent)]
 pub struct StringSchema(Cow<'static, str>);
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]

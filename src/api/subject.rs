@@ -1,9 +1,7 @@
-use crate::{
-    SchemaRegistryError, StringSchema, Subject, SubjectVersion, UnregisteredSchema, Version,
-};
-use async_trait::async_trait;
+use crate::error::SchemaRegistryError;
+use crate::types::{StringSchema, Subject, SubjectVersion, UnregisteredSchema, Version};
 
-#[async_trait]
+#[async_trait::async_trait]
 pub trait SubjectAPI {
     /// Get the subject-version pairs for the provided schema id
     async fn get_schema_subject_versions(

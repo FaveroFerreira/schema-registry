@@ -1,5 +1,4 @@
-use crate::SchemaRegistryError;
-
+use crate::error::SchemaRegistryError;
 use crate::types::{ClusterConfig, SubjectConfig};
 
 #[async_trait::async_trait]
