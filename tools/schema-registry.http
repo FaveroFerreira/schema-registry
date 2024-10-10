@@ -1,0 +1,177 @@
+@subject = avro.book-value
+@schema = {\\"namespace\\": \\"com.github.schemaregistryconverter.avro.schema\\", \\"type\\": \\"record\\", \\"name\\": \\"Book\\", \\"fields\\": [{\\"name\\": \\"id\\", \\"type\\": \\"int\\"}, {\\"name\\": \\"title\\", \\"type\\": \\"string\\"}, {\\"name\\":\\"author\\", \\"type\\":\\"com.github.schemaregistryconverter.avro.schema.Author\\"}]}
+
+@ref_subject = avro.author-value
+@ref_schema = {\\"namespace\\": \\"com.github.schemaregistryconverter.avro.schema\\", \\"type\\": \\"record\\", \\"name\\": \\"Author\\", \\"fields\\": [{\\"name\\": \\"id\\", \\"type\\": \\"int\\"}, {\\"name\\": \\"name\\", \\"type\\": \\"string\\"}, {\\"name\\":\\"email\\", \\"type\\": [\\"null\\", \\"string\\"], \\"default\\": null}]}
+
+
+### GET /schemas/ids/{{id}} (Get schema identified by id)
+GET http://localhost:8081/schemas/ids/2
+Accept: application/vnd.schemaregistry.v1+json
+
+### GET /schemas/ids/2/schema (Get the raw schema identified by id)
+GET http://localhost:8081/schemas/ids/2/schema
+
+### GET /schemas/types (Get all schemas types registerd in the registry)
+GET http://localhost:8081/schemas/types
+
+### GET /schemas/ids/2/versions (Get all versions of the schema identified by id)
+GET http://localhost:8081/schemas/ids/2/versions
+
+
+### GET /subjects (Get all subjects)
+GET http://localhost:8081/subjects?deleted=true
+
+### GET /subjects/{{subject}}/versions (Get all versions of the schema under the subject)
+GET http://localhost:8081/subjects/{{subject}}/versions
+
+### DELETE /subjects/{{subject}} (Delete the subject and all its versions and compatibility level if it exists)
+DELETE http://localhost:8081/subjects/{{subject}}
+
+### GET subjects/{{subject}}/versions/{{version}} (Get the schema identified by subject and version)
+GET http://localhost:8081/subjects/{{subject}}/versions/1
+
+### GET subjects/{{subject}}/versions/{{version}}/schema (Get the raw schema identified by subject and version)
+GET http://localhost:8081/subjects/{{subject}}/versions/1/schema
+
+### POST /subjects/{{subject}} (Create a new schema under the subject)
+POST /subjects/{{subject}}/versions (Create a new schema under the subject)
+Accept: application/vnd.schemaregistry.v1+json
+
+{
+  "schema":
+    "{
+       \"type\": \"record\",
+       \"name\": \"test\",
+       \"fields\":
+         [
+           {
+             \"type\": \"string\",
+             \"name\": \"field1\"
+           },
+           {
+             \"type\": \"com.acme.Referenced\",
+             \"name\": \"int\"
+           }
+          ]
+     }",
+  "schemaType": "AVRO",
+  "references": [
+    {
+       "name": "com.acme.Referenced",
+       "subject":  "childSubject",
+       "version": 1
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### GET subjects
+GET http://localhost:8081/subjects
+
+### DELETE schemas under a subject
+DELETE http://localhost:8081/subjects/{{subject_name}}
+
+### POST create a new schema under a subject
+POST http://localhost:8081/subjects/{{ref_subject}}/versions
+Content-Type: application/vnd.schemaregistry.v1+json
+
+{
+  "schema": "{{ref_schema}}"
+}
+
+### POST create a new schema under a subject with reference
+POST http://localhost:8081/subjects/{{subject}}/versions
+Content-Type: application/vnd.schemaregistry.v1+json
+
+{
+  "schema": "{{schema}}",
+  "references": [
+    {
+      "name": "Author",
+      "subject": "{{ref_subject}}",
+      "version": 1
+    }
+  ]
+}
+
+### GET schema by subject
+GET http://localhost:8081/subjects/{{subject}}/versions/1
+
+### GET schema by id
+GET http://localhost:8081/schemas/ids/2
+
+### POST lookup schema
+POST http://localhost:8081/subjects/{{subject}}
+Content-Type: application/vnd.schemaregistry.v1+json
+
+{
+  "schema": "{{schema}}",
+  "references": [
+    {
+      "name": "Author",
+      "subject": "{{ref_subject}}",
+      "version": 1
+    }
+  ]
+}
+
+### GET subject versions
+GET http://localhost:8081/subjects/{{subject}}/versions
+
+### DELETE subject version
+DELETE http://localhost:8081/subjects/{{subject}}/versions/1
+
+### POST check compatibility
+POST http://localhost:8081/compatibility/subjects/{{subject}}/versions/latest
+Content-Type: application/vnd.schemaregistry.v1+json
+
+{
+  "schema": "{{schema}}",
+  "references": [
+    {
+      "name": "Author",
+      "subject": "{{ref_subject}}",
+      "version": 1
+    }
+  ]
+}
+
+### GET subject config
+GET http://localhost:8081/config/{{subject_name}}
+
+### PUT subject config
+PUT http://localhost:8081/config/{{subject_name}}
+Content-Type: application/json
+
+{
+  "compatibility": "BACKWARD"
+}
+
+### GET global config
+GET http://localhost:8081/config
+
+### PUT global config
+PUT http://localhost:8081/config
+Content-Type: application/json
+
+{
+  "compatibility": "BACKWARD"
+}
