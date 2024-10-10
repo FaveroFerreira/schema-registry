@@ -5,13 +5,11 @@ use std::str::FromStr;
 
 use base64::engine::general_purpose::STANDARD as BASE64_STANDARD;
 use base64::write::EncoderWriter;
-use futures::future::BoxFuture;
 use http::{header, HeaderMap, HeaderName, HeaderValue};
 use reqwest::{Client, Proxy};
-use serde::de::DeserializeOwned;
 use tracing::warn;
 
-use crate::error::{ConfigurationError, HttpCallError};
+use crate::error::ConfigurationError;
 
 #[derive(Clone, Eq, PartialEq)]
 pub enum Authentication {

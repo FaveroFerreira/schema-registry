@@ -7,6 +7,11 @@ use serde::{Deserialize, Serialize};
 
 use crate::error::SchemaRegistryError;
 
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Serialize, Deserialize)]
+pub struct CompatibilityCheck {
+    pub(crate) is_compatible: bool,
+}
+
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct ExporterStatus {
     pub name: String,

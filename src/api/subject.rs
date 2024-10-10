@@ -16,7 +16,11 @@ pub trait SubjectAPI {
     async fn get_subject_versions(&self, subject: &str) -> Result<Vec<u32>, SchemaRegistryError>;
 
     /// Delete a subject, it's versions and associated compatibility level if it exists
-    async fn delete_subject(&self, permanent: bool) -> Result<Vec<u32>, SchemaRegistryError>;
+    async fn delete_subject(
+        &self,
+        subject: &str,
+        permanent: bool,
+    ) -> Result<Vec<u32>, SchemaRegistryError>;
 
     /// Get a specific version of the subject
     async fn get_subject_version(

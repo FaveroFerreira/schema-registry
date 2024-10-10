@@ -63,7 +63,10 @@ impl ExporterAPI for SchemaRegistryClient {
         Ok(result)
     }
 
-    async fn create_exporter(&self, config: &ExporterConfig) -> Result<String, SchemaRegistryError> {
+    async fn create_exporter(
+        &self,
+        config: &ExporterConfig,
+    ) -> Result<String, SchemaRegistryError> {
         let mut http_calls = Vec::with_capacity(self.urls.len());
 
         for url in self.urls.iter() {
@@ -90,7 +93,11 @@ impl ExporterAPI for SchemaRegistryClient {
         Ok(result)
     }
 
-    async fn update_exporter(&self, name: &str, config: &ExporterConfig) -> Result<String, SchemaRegistryError> {
+    async fn update_exporter(
+        &self,
+        name: &str,
+        config: &ExporterConfig,
+    ) -> Result<String, SchemaRegistryError> {
         let mut http_calls = Vec::with_capacity(self.urls.len());
 
         for url in self.urls.iter() {
@@ -117,7 +124,11 @@ impl ExporterAPI for SchemaRegistryClient {
         Ok(result)
     }
 
-    async fn update_exporter_config(&self, name: &str, config: &HashMap<String, String>) -> Result<String, SchemaRegistryError> {
+    async fn update_exporter_config(
+        &self,
+        name: &str,
+        config: &HashMap<String, String>,
+    ) -> Result<String, SchemaRegistryError> {
         let mut http_calls = Vec::with_capacity(self.urls.len());
 
         for url in self.urls.iter() {
@@ -170,7 +181,10 @@ impl ExporterAPI for SchemaRegistryClient {
         Ok(result)
     }
 
-    async fn get_exporter_config(&self, name: &str) -> Result<HashMap<String, String>, SchemaRegistryError> {
+    async fn get_exporter_config(
+        &self,
+        name: &str,
+    ) -> Result<HashMap<String, String>, SchemaRegistryError> {
         let mut http_calls = Vec::with_capacity(self.urls.len());
 
         for url in self.urls.iter() {

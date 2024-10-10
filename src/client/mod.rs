@@ -1,9 +1,9 @@
 use std::sync::Arc;
 
-use crate::api::SchemaRegistryAPI;
+use reqwest::Client;
+
 use crate::client::config::SchemaRegistryConfig;
 use crate::error::SchemaRegistryError;
-use reqwest::Client;
 
 pub mod config;
 mod http_util;
@@ -42,6 +42,3 @@ impl SchemaRegistryClient {
         Ok(Self { http, urls })
     }
 }
-
-#[async_trait::async_trait]
-impl SchemaRegistryAPI for SchemaRegistryClient {}
