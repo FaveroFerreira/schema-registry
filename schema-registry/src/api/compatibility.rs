@@ -2,6 +2,7 @@ use crate::error::SchemaRegistryError;
 
 use crate::types::{UnregisteredSchema, Version};
 
+#[cfg_attr(test, mockall::automock)]
 #[async_trait::async_trait]
 pub trait CompatibilityAPI: Send + Sync {
     /// Checks if a schema is compatible with the provided subject version

@@ -1,6 +1,7 @@
 use crate::error::SchemaRegistryError;
 use crate::types::{StringSchema, Subject, SubjectVersion, UnregisteredSchema, Version};
 
+#[cfg_attr(test, mockall::automock)]
 #[async_trait::async_trait]
 pub trait SubjectAPI {
     /// Get the subject-version pairs for the provided schema id

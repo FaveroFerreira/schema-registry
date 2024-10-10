@@ -1,6 +1,7 @@
 use crate::error::SchemaRegistryError;
 use crate::types::{Schema, SchemaType, StringSchema};
 
+#[cfg_attr(test, mockall::automock)]
 #[async_trait::async_trait]
 pub trait SchemaAPI {
     /// Get the schema identified by the provided id

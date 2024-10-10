@@ -8,8 +8,8 @@ use serde::{Deserialize, Serialize};
 use crate::error::SchemaRegistryError;
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Serialize, Deserialize)]
-pub struct CompatibilityCheck {
-    pub(crate) is_compatible: bool,
+pub(crate) struct CompatibilityCheck {
+    pub is_compatible: bool,
 }
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
@@ -38,55 +38,149 @@ pub struct ExporterConfig {
     pub config: HashMap<String, String>,
 }
 
-#[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Default, Clone, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ClusterConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub alias: Option<String>,
+    pub(crate) alias: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub normalize: Option<bool>,
+    pub(crate) normalize: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub compatibility_level: Option<CompatibilityLevel>,
+    #[serde(rename(serialize = "compatibility", deserialize = "compatibilityLevel"))]
+    pub(crate) compatibility_level: Option<CompatibilityLevel>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub compatibility_group: Option<String>,
+    pub(crate) compatibility_group: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub default_metadata: Option<HashMap<String, String>>,
+    pub(crate) default_metadata: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub override_metadata: Option<HashMap<String, String>>,
+    pub(crate) override_metadata: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub default_rule_set: Option<HashMap<String, String>>,
+    pub(crate) default_rule_set: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub override_rule_set: Option<HashMap<String, String>>,
+    pub(crate) override_rule_set: Option<HashMap<String, String>>,
+}
+
+impl ClusterConfig {
+    pub fn new() -> Self {
+        Default::default()
+    }
+
+    pub fn alias(mut self, alias: &str) -> Self {
+        self.alias = Some(alias.to_string());
+        self
+    }
+
+    pub fn normalize(mut self, normalize: bool) -> Self {
+        self.normalize = Some(normalize);
+        self
+    }
+
+    pub fn compatibility_level(mut self, compatibility_level: CompatibilityLevel) -> Self {
+        self.compatibility_level = Some(compatibility_level);
+        self
+    }
+
+    pub fn compatibility_group(mut self, compatibility_group: &str) -> Self {
+        self.compatibility_group = Some(compatibility_group.to_string());
+        self
+    }
+
+    pub fn default_metadata(mut self, default_metadata: HashMap<String, String>) -> Self {
+        self.default_metadata = Some(default_metadata);
+        self
+    }
+
+    pub fn override_metadata(mut self, override_metadata: HashMap<String, String>) -> Self {
+        self.override_metadata = Some(override_metadata);
+        self
+    }
+
+    pub fn default_rule_set(mut self, default_rule_set: HashMap<String, String>) -> Self {
+        self.default_rule_set = Some(default_rule_set);
+        self
+    }
+
+    pub fn override_rule_set(mut self, override_rule_set: HashMap<String, String>) -> Self {
+        self.override_rule_set = Some(override_rule_set);
+        self
+    }
 }
 
 #[derive(Debug, Default, Clone, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SubjectConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub alias: Option<String>,
+    pub(crate) alias: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub normalize: Option<bool>,
+    pub(crate) normalize: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub compatibility_level: Option<CompatibilityLevel>,
+    #[serde(rename(serialize = "compatibility", deserialize = "compatibilityLevel"))]
+    pub(crate) compatibility_level: Option<CompatibilityLevel>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub compatibility_group: Option<String>,
+    pub(crate) compatibility_group: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub default_metadata: Option<HashMap<String, String>>,
+    pub(crate) default_metadata: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub override_metadata: Option<HashMap<String, String>>,
+    pub(crate) override_metadata: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub default_rule_set: Option<HashMap<String, String>>,
+    pub(crate) default_rule_set: Option<HashMap<String, String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub override_rule_set: Option<HashMap<String, String>>,
+    pub(crate) override_rule_set: Option<HashMap<String, String>>,
+}
+
+impl SubjectConfig {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn alias(mut self, alias: &str) -> Self {
+        self.alias = Some(alias.to_string());
+        self
+    }
+
+    pub fn normalize(mut self, normalize: bool) -> Self {
+        self.normalize = Some(normalize);
+        self
+    }
+
+    pub fn compatibility_level(mut self, compatibility_level: CompatibilityLevel) -> Self {
+        self.compatibility_level = Some(compatibility_level);
+        self
+    }
+
+    pub fn compatibility_group(mut self, compatibility_group: &str) -> Self {
+        self.compatibility_group = Some(compatibility_group.to_string());
+        self
+    }
+
+    pub fn default_metadata(mut self, default_metadata: HashMap<String, String>) -> Self {
+        self.default_metadata = Some(default_metadata);
+        self
+    }
+
+    pub fn override_metadata(mut self, override_metadata: HashMap<String, String>) -> Self {
+        self.override_metadata = Some(override_metadata);
+        self
+    }
+
+    pub fn default_rule_set(mut self, default_rule_set: HashMap<String, String>) -> Self {
+        self.default_rule_set = Some(default_rule_set);
+        self
+    }
+
+    pub fn override_rule_set(mut self, override_rule_set: HashMap<String, String>) -> Self {
+        self.override_rule_set = Some(override_rule_set);
+        self
+    }
 }
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Serialize, Deserialize)]
-pub struct Id {
+pub(crate) struct Id {
     pub id: u32,
 }
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Serialize, Deserialize)]
-pub struct ResourceMode {
+pub(crate) struct ResourceMode {
     pub mode: Mode,
 }
 
@@ -186,7 +280,7 @@ pub struct LookupSubject {
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(transparent)]
-pub struct StringSchema(Cow<'static, str>);
+pub struct StringSchema(pub Cow<'static, str>);
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct SubjectVersion {
@@ -241,14 +335,14 @@ impl Reference {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UnregisteredSchema {
-    pub schema: String,
-    pub schema_type: SchemaType,
+    pub(crate) schema: String,
+    pub(crate) schema_type: SchemaType,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub references: Option<Vec<Reference>>,
+    pub(crate) references: Option<Vec<Reference>>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RegisteredSchema {
+pub(crate) struct RegisteredSchema {
     pub id: u32,
 }
 

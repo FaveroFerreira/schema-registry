@@ -1,0 +1,9 @@
+[package]
+name = "crud-exporter"
+version = "0.1.0"
+edition = "2021"
+rust-version.workspace = true
+
+[dependencies]
+tokio = { version = "1.40.0", features = ["full"] }
+schema-registry = { path = "../../schema-registry" }

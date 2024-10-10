@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use crate::error::SchemaRegistryError;
 use crate::types::{ExporterConfig, ExporterStatus};
 
+#[cfg_attr(test, mockall::automock)]
 #[async_trait::async_trait]
 pub trait ExporterAPI {
     /// Get the list of exporters currently registered in the schema registry

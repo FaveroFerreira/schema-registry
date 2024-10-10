@@ -1,6 +1,7 @@
 use crate::error::SchemaRegistryError;
 use crate::types::Mode;
 
+#[cfg_attr(test, mockall::automock)]
 #[async_trait::async_trait]
 pub trait ModeAPI {
     /// Get the global resource mode of the schema registry

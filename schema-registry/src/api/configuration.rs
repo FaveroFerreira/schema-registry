@@ -1,6 +1,7 @@
 use crate::error::SchemaRegistryError;
 use crate::types::{ClusterConfig, SubjectConfig};
 
+#[cfg_attr(test, mockall::automock)]
 #[async_trait::async_trait]
 pub trait ConfigurationAPI: Send + Sync {
     /// Get the global configuration for the cluster

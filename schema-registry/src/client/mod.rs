@@ -1,8 +1,6 @@
 use std::sync::Arc;
 
-use reqwest::Client;
-
-use crate::client::config::SchemaRegistryConfig;
+pub use crate::client::config::SchemaRegistryConfig;
 use crate::error::SchemaRegistryError;
 
 pub mod config;
@@ -15,7 +13,7 @@ pub mod implementation;
 #[derive(Clone)]
 pub struct SchemaRegistryClient {
     urls: Arc<[String]>,
-    http: Client,
+    http: reqwest::Client,
 }
 
 impl SchemaRegistryClient {

@@ -4,12 +4,12 @@
 //!
 //! https://docs.confluent.io/platform/current/schema-registry/develop/api.html
 
-use crate::api::compatibility::CompatibilityAPI;
-use crate::api::configuration::ConfigurationAPI;
-use crate::api::exporter::ExporterAPI;
-use crate::api::mode::ModeAPI;
-use crate::api::schema::SchemaAPI;
-use crate::api::subject::SubjectAPI;
+pub use crate::api::compatibility::CompatibilityAPI;
+pub use crate::api::configuration::ConfigurationAPI;
+pub use crate::api::exporter::ExporterAPI;
+pub use crate::api::mode::ModeAPI;
+pub use crate::api::schema::SchemaAPI;
+pub use crate::api::subject::SubjectAPI;
 
 pub mod compatibility;
 pub mod configuration;
