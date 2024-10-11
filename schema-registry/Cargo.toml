@@ -2,7 +2,7 @@
 name = "schema-registry"
 version = "0.1.0"
 edition = "2021"
-rust-version = { workspace = true }
+rust-version = "1.78"
 description = "Interact with the Confluent Schema Registry"
 homepage = "https://github.com/faveroferreira/schema-registry"
 repository = "https://github.com/faveroferreira/schema-registry"

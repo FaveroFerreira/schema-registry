@@ -3,5 +3,3 @@ members = ["schema-registry", "examples/*"]
 default-members = ["schema-registry"]
 resolver = "2"
 
-[workspace.package]
-rust-version = "1.78"
