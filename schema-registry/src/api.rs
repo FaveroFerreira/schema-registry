@@ -5,7 +5,6 @@ use crate::types::{
 };
 use std::collections::HashMap;
 
-
 /// The Schema Registry API trait
 ///
 /// This trait conforms with the [Confluent Schema Registry API documentation](https://docs.confluent.io/platform/current/schema-registry/develop/api.html).

@@ -8,7 +8,11 @@ use crate::api::SchemaRegistryAPI;
 use crate::client::config::SchemaRegistryConfig;
 use crate::client::http_util::{exec_calls, parse_response, VND_SCHEMA_REGISTRY_V1_JSON};
 use crate::error::SchemaRegistryError;
-use crate::types::{ClusterConfig, CompatibilityCheck, ExporterConfig, ExporterStatus, Id, Mode, ResourceMode, Schema, SchemaType, StringSchema, Subject, SubjectConfig, SubjectVersion, UnregisteredSchema, Version};
+use crate::types::{
+    ClusterConfig, CompatibilityCheck, ExporterConfig, ExporterStatus, Id, Mode, ResourceMode,
+    Schema, SchemaType, StringSchema, Subject, SubjectConfig, SubjectVersion, UnregisteredSchema,
+    Version,
+};
 
 pub mod config;
 mod http_util;

@@ -183,7 +183,9 @@ where
     Ok((header_name, header_value))
 }
 
-pub(crate) fn build_headers(headers: &HashMap<String, String>) -> Result<HeaderMap, ConfigurationError> {
+pub(crate) fn build_headers(
+    headers: &HashMap<String, String>,
+) -> Result<HeaderMap, ConfigurationError> {
     let mut header_map = HeaderMap::new();
 
     for (name, value) in headers {
