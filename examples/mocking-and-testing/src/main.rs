@@ -1,7 +1,16 @@
 use schema_registry::api::SchemaRegistryAPI;
+use schema_registry::client::SchemaRegistryClient;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    let sr = SchemaRegistryClient::from_url("http://localhost:8081")?;
+
+    let state = AppState {
+        sr: Box::new(sr)
+    };
+
+    let subjects = get_subjects(&state).await?;
+
     Ok(())
 }
 
