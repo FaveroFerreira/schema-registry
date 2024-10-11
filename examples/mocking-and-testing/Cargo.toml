@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-tokio = { version = "1.40.0", features = ["full"] }
 anyhow = "1.0"
 schema-registry = { path = "../../schema-registry", features = ["testing"] }
+tokio = { version = "1.40.0", features = ["full"] }
