@@ -9,7 +9,7 @@ async fn main() -> anyhow::Result<()> {
         sr: Box::new(sr)
     };
 
-    let subjects = get_subjects(&state).await?;
+    let _subjects = get_subjects(&state).await?;
 
     Ok(())
 }
