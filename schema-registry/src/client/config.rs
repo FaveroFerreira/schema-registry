@@ -183,7 +183,7 @@ where
     Ok((header_name, header_value))
 }
 
-pub fn build_headers(headers: &HashMap<String, String>) -> Result<HeaderMap, ConfigurationError> {
+pub(crate) fn build_headers(headers: &HashMap<String, String>) -> Result<HeaderMap, ConfigurationError> {
     let mut header_map = HeaderMap::new();
 
     for (name, value) in headers {
@@ -195,12 +195,12 @@ pub fn build_headers(headers: &HashMap<String, String>) -> Result<HeaderMap, Con
     Ok(header_map)
 }
 
-pub fn build_proxy(proxy: &String) -> Result<Proxy, ConfigurationError> {
+pub(crate) fn build_proxy(proxy: &String) -> Result<Proxy, ConfigurationError> {
     let proxy = Proxy::all(proxy)?;
     Ok(proxy)
 }
 
-pub fn build_http_client(conf: &SchemaRegistryConfig) -> Result<Client, ConfigurationError> {
+pub(crate) fn build_http_client(conf: &SchemaRegistryConfig) -> Result<Client, ConfigurationError> {
     let mut default_headers = HeaderMap::new();
 
     if let Some(headers) = &conf.headers {
