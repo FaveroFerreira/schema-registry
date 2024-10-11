@@ -1,5 +1,5 @@
 [workspace]
-members = ["schema-registry", "examples/*"]
+members = ["examples/*", "schema-registry"]
 default-members = ["schema-registry"]
 resolver = "2"
 
