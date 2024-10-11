@@ -1,9 +1,3 @@
-//! This module contains the API traits for interacting with the schema registry
-//!
-//! All traits represented here are according to the schema registry api reference
-//!
-//! https://docs.confluent.io/platform/current/schema-registry/develop/api.html
-
 use crate::error::SchemaRegistryError;
 use crate::types::{
     ClusterConfig, ExporterConfig, ExporterStatus, Mode, Schema, SchemaType, StringSchema, Subject,
@@ -11,6 +5,10 @@ use crate::types::{
 };
 use std::collections::HashMap;
 
+
+/// The Schema Registry API trait
+///
+/// This trait conforms with the [Confluent Schema Registry API documentation](https://docs.confluent.io/platform/current/schema-registry/develop/api.html).
 #[cfg_attr(feature = "testing", mockall::automock)]
 #[async_trait::async_trait]
 pub trait SchemaRegistryAPI: Send + Sync {
